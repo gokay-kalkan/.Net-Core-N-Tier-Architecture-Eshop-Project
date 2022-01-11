@@ -1,0 +1,42 @@
+﻿@model RegisterModel
+@{
+    ViewData["Title"] = "UserCreate";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<h1>Kullanıcı Ekle</h1>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <form method="post" asp-action="UserCreate" asp-antiforgery="true">
+                    <label>Email</label>
+                    <input type="text" class="form-control" asp-for="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <br />
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" class="form-control" asp-for="UserName" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <br />
+                    <label>Ad Soyad</label>
+                    <input type="text" class="form-control" asp-for="FullName" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                    <br />
+                    <label>Şifre</label>
+                    <input type="password" class="form-control" asp-for="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <br />
+                    <label>Şifre Tekrar</label>
+                    <input type="password" class="form-control" asp-for="RePassword" />
+                    <span asp-validation-for="RePassword" class="text-danger"></span>
+                    <br />
+
+                    <button type="submit" class="btn btn-warning">Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

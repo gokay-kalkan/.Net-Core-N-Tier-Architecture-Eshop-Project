@@ -1,0 +1,35 @@
+﻿@model Image
+@{
+    ViewData["Title"] = "ImageUpdate";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="form-group">
+                    <form method="post" asp-controller="Product" asp-action="ImageUpdate" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+
+
+                        <div>
+                            <input asp-for="ImageId" hidden />
+                            <input type="hidden" asp-for="ProductId" />
+                            <input type="file" asp-for="File" />
+                            <br />
+                            <button type="submit" class="btn btn-warning">Güncelle</button>
+
+
+
+
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

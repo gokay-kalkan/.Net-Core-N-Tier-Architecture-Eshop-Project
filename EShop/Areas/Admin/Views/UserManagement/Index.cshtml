@@ -1,0 +1,30 @@
+﻿@model List<UserAdmin>
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <table class="table table-bordered table table-striped">
+        <tr>
+            <th>Ad Soyad</th>
+            <th>Kullanıcı Adı</th>
+            <th>Email</th>
+            <th>Rol Ata</th>
+            <th>Kullanıcıyı Engelle</th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td><a asp-action="RoleAssign" class="btn btn-success" asp-route-id="@item.Id">Rol Ata</a></td>
+                    <td><a asp-action="UserDelete" asp-route-id="@item.Id" class="btn btn-danger">Engelle</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="UserCreate" class="btn btn-primary">Yeni Kullanıcı Ekle</a>
+
+

@@ -1,0 +1,453 @@
+﻿@model Product
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+
+    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
+
+    <section id="aa-product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-product-details-area">
+                        <div class="aa-product-details-content">
+                            <div class="row">
+                                <!-- Modal view slider -->
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <div class="aa-product-view-slider">
+                                        <div id="demo-1" class="simpleLens-gallery-container">
+                                            <div class="simpleLens-container">
+                                                <div><a><img src="~/img/@ViewBag.image" style="width:200px; height:200px;"></a></div>
+                                            </div>
+                                            <div class="simpleLens-thumbnails-container">
+                                                @foreach (var item in ViewBag.orderdescimage)
+                                                {
+                                                    <a href="#">
+                                                        <img src="~/img/@item.ImageName" style="width:80px; height:80px;">
+                                                    </a>
+                                                }
+
+                                                @*<a href="#">
+                                                        <img src="~/img/@ViewBag.image" style="width:80px; height:80px;">
+                                                    </a>
+                                                    <a href="#">
+                                                        <img src="~/img/@ViewBag.image" style="width:80px; height:80px;">
+                                                    </a>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal view content -->
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                    <div class="aa-product-view-content">
+                                        <h3>@Model.Name</h3>
+                                        <div class="aa-price-block">
+                                            <span class="aa-product-view-price">$ @Model.Price</span>
+                                            <p class="aa-product-avilability">Stokta Var: <span>Adet @Model.Stock</span></p>
+                                        </div>
+                                        <p>Kategorisi: @Model.Category.Name</p>
+
+                                        @*<div class="aa-prod-view-size">
+                                                <a href="#">S</a>
+                                                <a href="#">M</a>
+                                                <a href="#">L</a>
+                                                <a href="#">XL</a>
+                                            </div>
+                                            <h4>Color</h4>
+                                            <div class="aa-color-tag">
+                                                <a href="#" class="aa-color-green"></a>
+                                                <a href="#" class="aa-color-yellow"></a>
+                                                <a href="#" class="aa-color-pink"></a>
+                                                <a href="#" class="aa-color-black"></a>
+                                                <a href="#" class="aa-color-white"></a>
+                                            </div>*@
+                                        @*<div class="aa-prod-quantity">
+                                                <form action="">
+                                                    <select id="" name="">
+                                                        <option selected="1" value="0">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="2">3</option>
+                                                        <option value="3">4</option>
+                                                        <option value="4">5</option>
+                                                        <option value="5">6</option>
+                                                    </select>
+                                                </form>
+                                                <p class="aa-prod-category">
+                                                    Category: <a href="#">Polo T-Shirt</a>
+                                                </p>
+                                            </div>*@
+                                        <div class="aa-prod-view-bottom">
+                                            <div class="col-md-4" id="puan"></div>
+                                            <a class="aa-add-to-cart-btn" asp-controller="Cart" asp-action="AddCart" asp-route-id="@Model.ProductId">Sepete Ekle</a>
+                                            <div style="margin-left:320px; margin-top:-45px;">
+                                                <form method="post" asp-controller="Product" asp-action="ProductFavoriteAdd" asp-route-id="@Model.ProductId">
+                                                    <button class="aa-add-to-cart-btn" type="submit">Favorilere Ekle</button>
+                                                </form>
+                                            </div>
+
+
+
+                                            <script>
+                                    $(function(){
+
+                                     $('#puan').rateYo({
+
+                                      rating:@ViewBag.average,
+                                    readonly: true,
+
+                                      multiColor: {
+
+                                      "startColor": "#FF0000", //RED
+                                     "endColor": "#00FF00"  //GREEN
+                                         },
+                                        });
+                                        });
+                                            </script>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aa-product-details-bottom">
+                            <ul class="nav nav-tabs" id="myTab2">
+                                <li><a href="#description" data-toggle="tab">Ürün Açıklaması</a></li>
+                                <li><a href="#review" data-toggle="tab">Ürün Hakkında Yorumlar</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="description">
+                                    <p>@Model.Description</p>
+                                    @*<ul>
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, culpa!</li>
+
+                                        </ul>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, iusto earum voluptates autem esse molestiae ipsam, atque quam amet similique ducimus aliquid voluptate perferendis, distinctio!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ea, voluptas! Aliquam facere quas cumque rerum dolore impedit, dicta ducimus repellat dignissimos, fugiat, minima quaerat necessitatibus? Optio adipisci ab, obcaecati, porro unde accusantium facilis repudiandae.</p>*@
+                                </div>
+                                <div class="tab-pane fade " id="review">
+                                    <div class="aa-product-review-area">
+
+                                        <h4>Yorum Yapınız</h4> Yapılan Yorum: [@ViewBag.number]
+                                    <form method="post" asp-antiforgery="true" class="aa-review-form">
+                                        <div asp-validation-summary="ModelOnly"></div>
+                                        <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                                        <input type="hidden" name="UserAdminId" value="@Context.Session.GetString("Id")" />
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <div class="form-group">
+                                                <input type="button" value="@Context.Session.GetString("FullName")" class="btn btn-success" />
+                                            </div>
+                                        }
+
+
+                                        <div>
+                                            <p>Puanınız</p>
+
+                                            <div id="PuanVer">
+
+                                            </div>
+                                            <input type="hidden" name="RatingProduct" id="rating" />
+
+                                            @*<a href="#"><span class="fa fa-star-o"></span></a>
+            <a href="#"><span class="fa fa-star-o"></span></a>
+            <a href="#"><span class="fa fa-star-o"></span></a>
+            <a href="#"><span class="fa fa-star-o"></span></a>
+            <a href="#"><span class="fa fa-star-o"></span></a>*@
+                                        </div>
+                                        <!-- review form -->
+
+                                        <div class="form-group">
+                                            <label for="message">Yorumunuz</label>
+                                            <textarea class="form-control" rows="3" id="message" name="CommentText"></textarea>
+                                            <br />
+
+                                        </div>
+
+                                        <button type="submit" class="btn btn-default aa-review-submit">Gönder</button>
+                                        <br /> <br />
+                                    </form>
+                                        <div class="container">
+                                            <div class="row">
+                                                @{ int i = 1; }
+
+                                                @foreach (var item in ViewBag.comment)
+                                                {
+                                                    <div class="col-md-12">
+
+                                                        <div class="col-md-6">
+
+
+                                                            <strong>@item.UserAdmin.FullName</strong> <span>@item.CommentDate.ToShortDateString()</span>
+
+                                                            <p>@item.CommentText</p>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <script>
+                                               $(function(){
+
+                                            $('#@("puanlar"+i)').rateYo({
+
+                                           rating:@item.RatingProduct,
+                                           readonly: true,
+
+                                           multiColor: {
+
+                                          "startColor": "#FF0000", //RED
+                                          "endColor": "#00FF00"  //GREEN
+                                                 },
+                                                 });
+                                                 });
+                                                    </script>
+
+                                                    <div class="col-md-4" id="@("puanlar" + i)"></div>
+                                                    i++;
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <br />
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (ViewBag.commentfind != null)
+                                            {
+                                                <a class="btn btn-warning" asp-action="CommentUpdate" asp-controller="Product" asp-route-id="@ViewBag.commentid" data-toggle="modal" data-target="#exampleModal">Yorumumu Güncelle</a>
+                                            }
+
+                                        }
+
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (ViewBag.commentfind != null)
+                                            {
+                                                <a class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">Yorumumu Sil</a>
+                                            }
+
+                                        }
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Yorumumu Güncelle</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <form method="post" asp-action="CommentUpdate" asp-antiforgery="true">
+                                                                            <input type="hidden" value="@ViewBag.commentid" />
+                                                                            <input type="hidden" value="@Model.ProductId" />
+                                                                            <label>Yorumum</label>
+                                                                            <input type="text" value="@ViewBag.commenttext" name="CommentText" class="form-control" />
+                                                                            <br />
+                                                                            <div id="PuanVerr">
+
+                                                                            </div>
+                                                                            <input type="hidden" name="RatingProduct" id="ratingg" />
+                                                                            <br />
+                                                                            <button type="submit" class="btn btn-warning">Güncelle</button>
+
+                                                                            <script>
+                                                                                $(function () {
+                                                                                    $("#PuanVerr").rateYo({
+
+                                                                                        rating: @ViewBag.productrating,
+                                                                                        numStars: 5,
+                                                                                        maxValue: 5,
+                                                                                        fullStar: true,
+
+                                                                                        multiColor: {
+
+                                                                                            "startColor": "#FF0000", //RED
+                                                                                            "endColor": "#00FF00"  //GREEN
+                                                                                        },
+                                                                                        onChange: function (ratingg, rateYoInstance) {
+                                                                                            $('#ratingg').val(ratingg);
+
+                                                                                        }
+                                                                                    });
+
+
+                                                                                });
+
+                                                                            </script>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Yorumumu Sil</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <form method="post" asp-action="CommentDelete" asp-antiforgery="true">
+                                                                            <input type="hidden" value="@ViewBag.commentid" />
+                                                                            <input type="hidden" value="@Model.ProductId" />
+
+                                                                            <br />
+
+                                                                            <button type="submit" class="btn btn-danger">Sil</button>
+
+
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*<div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        @{ int i = 1; }
+                                                        @foreach (var item in ViewBag.comment)
+                                                        {
+                                                            <div class="col-md-4">
+
+                                                                <strong>@item.UserAdmin.FullName</strong>
+
+                                                                <script>
+                                                   $(function(){
+
+                                                $('#@("puanlar"+i)').rateYo({
+
+                                               rating:@item.RatingProduct,
+                                               readonly: true,
+
+                                               multiColor: {
+
+                                              "startColor": "#FF0000", //RED
+                                              "endColor": "#00FF00"  //GREEN
+                                                     },
+                                                     });
+                                                     });
+                                                                </script>
+
+                                                                <p>@item.CommentText</p>
+
+
+                                                            </div>
+                                                            <div class="col-md-8" id="@("puanlar" + i)"></div>
+                                                            i++;
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- / product category -->
+    <!-- Subscribe section -->
+    <section id="aa-subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-subscribe-area">
+                        <h3>Subscribe our newsletter </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
+                        <form action="" class="aa-subscribe-form">
+                            <input type="email" name="" id="" placeholder="Enter your Email">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- / Subscribe section -->
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+
+
+
+    <script>
+        $(function () {
+            $("#PuanVer").rateYo({
+
+                rating: 0,
+                numStars: 5,
+                maxValue: 5,
+                fullStar: true,
+
+                multiColor: {
+
+                    "startColor": "#FF0000", //RED
+                    "endColor": "#00FF00"  //GREEN
+                },
+                onChange: function (rating, rateYoInstance) {
+                    $('#rating').val(rating);
+
+                }
+            });
+
+
+        });
+
+    </script>
+
+
+
+
+</body>

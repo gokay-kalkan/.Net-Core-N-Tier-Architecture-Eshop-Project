@@ -1,0 +1,57 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "DeleteList";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered table table-striped">
+    <tr>
+        <td>Ürün Adı</td>
+        <td>Açıklama</td>
+        <td>Fiyat</td>
+        <td>Stok</td>
+        <td>Onay</td>
+        <td>Popüler</td>
+        <td>Kategori</td>
+        <td>Sil</td>
+        <td>Güncelle</td>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td>
+                    @if (item.Approved == true)
+                    {
+                        <i class="fas fa-check-circle" style="color:green; width:30px; height:25px;"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-times-circle" style="color:red; width:30px; height:25px;"></i>
+                    }
+
+                </td>
+                <td>
+                    @if (item.Popular == true)
+                    {
+                        <i class="fas fa-check-circle" style="color:green; width:30px; height:25px;"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-times-circle" style="color:red; width:30px; height:25px;"></i>
+                    }
+
+                </td>
+                <td>@item.Category.Name</td>
+                <td><a class="btn btn-danger" id="delete" data-id="@item.ProductId" asp-route-id="@item.ProductId" asp-area="Admin" asp-action="Delete"><i class="fa fa-trash"></i></a></td>
+
+                <td><a asp-action="Update" asp-route-id="@item.ProductId" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

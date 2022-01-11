@@ -1,0 +1,43 @@
+﻿@model List<Comment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+@if (Model.Count == 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-success">Henüz yapılan bir yorum bulunamadı.</div>
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <table class="table table-bordered table table-striped">
+        <tr>
+            <th>Resim</th>
+            <th>Ad</th>
+            <th>Fiyat</th>
+            <th>Stok Adeti</th>
+            <th>Sil</th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="~/img/@item.Product.Images.Where(x=>x.ProductId==item.ProductId).Select(x=>x.ImageName).FirstOrDefault()" width="70" height="70" /></td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Product.Stock</td>
+                    <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CommentId" onclick="return confirm('Silmek istediğinize emin misiniz')" ;"></a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+

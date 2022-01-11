@@ -1,0 +1,66 @@
+﻿
+@model List<EntityLayer.Entity.Product>
+
+<section id="aa-popular-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="aa-popular-category-area">
+                        <!-- start prduct navigation -->
+                        <ul class="nav nav-tabs aa-products-tab">
+                            <li class="active"><a href="#popular" data-toggle="tab">Popüler Ürünler</a></li>
+
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <!-- Start men popular category -->
+                            <div class="tab-pane fade in active" id="popular">
+                                <ul class="aa-product-catg aa-popular-slider">
+                                    <!-- start single product item -->
+                                    @foreach (var item in Model)
+                                    {
+                                        var c = 1;
+
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.popularimage)
+                                                {
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {<a class="aa-product-img" href="#"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Sepete Ekle</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                    <span class="aa-product-price">$@item.Price</span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

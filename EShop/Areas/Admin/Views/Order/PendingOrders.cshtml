@@ -1,0 +1,87 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "PendingOrders";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@if (Model.Count == 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-success">
+                    Henüz hazırlanan bir sipariş yok.
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <table class="table table-bordered table table-striped">
+
+        <tr>
+            <th>Resim</th>
+            <th>Ürün</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Sipariş Detay</th>
+            <th>Sipariş Durumunu Güncelle</th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="~/img/@item.ProductImage" width="70" height="70" /></td>
+                    <td>@item.Products.Name</td>
+                    <td>@item.ProductPrice</td>
+                    <td>@item.Quantity</td>
+                    <td><a class="btn btn-primary" asp-action="OrderDetail" asp-route-id="@item.OrderId">Sipariş Detay</a></td>
+                    <td>
+                        <form method="post" asp-action="OrderStateUpdate" asp-route-id="@item.OrderId">
+                            @Html.DropDownList("OrderState", Html.GetEnumSelectList<OrderState>
+                                (), "Sipariş Durumunu Seç", new { @class = "form-control" })
+                            <button type="submit" class="btn btn-warning">Güncelle</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-6">
+                    <label> Sipariş Numarası </label>
+                    <p>@item.OrderNo</p>
+                    <br />
+
+                    <label>Sipariş Durumu</label>
+                    <p>@item.OrderState</p>
+                    <br />
+                    <label>Kullanıcı</label>
+                    <p>@item.UserAdmin.FullName</p>
+                    <br />
+                    <label>Adres</label>
+                    <p>@item.Address</p>
+                    <br />
+                    <label>Şehir</label>
+                    <p>@item.City</p>
+                    <br />
+                    <label>Semt</label>
+                    <p>@item.District</p>
+                    <label>Sipariş Tarihi</label>
+                    <p>@item.Date.ToShortDateString()</p>
+                </div>
+            }
+        </div>
+    </div>
+
+
+}

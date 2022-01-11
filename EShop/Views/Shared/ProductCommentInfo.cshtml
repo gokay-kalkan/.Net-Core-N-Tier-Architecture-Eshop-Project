@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "ProductCommentInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @if (ViewBag.delete != null)
+            {
+                <div class="alert alert-success">
+                    Yorumunuz Başarıyla Silindi.
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            v class="col-md-6">
+            @if (ViewBag.update != null)
+            {
+                <div class="alert alert-success">
+                    Yorumunuz Başarıyla Güncellendi.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

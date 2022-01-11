@@ -1,0 +1,31 @@
+﻿
+@model LoginModel
+
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Giriş Veya Kayıt</h4>
+                <form class="aa-login-form" method="post" asp-controller="User" asp-action="Login" asp-antiforgery="true">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label for="">Kullanıcı Adınız <span>*</span></label>
+                    <input type="text" asp-for="Username" placeholder="Kullanıcı Adınızı Giriniz.">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                    <br />
+                    <label for="">Şifreniz<span>*</span></label>
+                    <input type="password" asp-for="Password" placeholder="Şifrenizi Giriniz.">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <br />
+                    <button class="aa-browse-btn" type="submit">Login</button>
+                    <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Beni Hatırla </label>
+                    <p class="aa-lost-password"><a asp-controller="Account" asp-action="ResetPassword">Şifre mi Unuttum ?</a></p>
+                    <div class="aa-register-now">
+                        Bir Hesabınız Yok mu ?<a href="account.html">Kayıt Olun!</a>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

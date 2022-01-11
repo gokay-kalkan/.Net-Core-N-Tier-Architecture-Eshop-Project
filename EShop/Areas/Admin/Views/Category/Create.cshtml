@@ -1,0 +1,26 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <form method="post" asp-antiforgery="true">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <label>Kategori Adı</label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <br />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <br />
+                        <button type="submit" class="btn btn-warning">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

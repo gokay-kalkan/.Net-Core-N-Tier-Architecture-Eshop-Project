@@ -1,0 +1,329 @@
+﻿
+@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Shop | Home</title>
+
+    <!-- Font awesome -->
+    <link href="~/dailyShop/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="~/dailyShop/css/bootstrap.css" rel="stylesheet">
+    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
+    <link href="~/dailyShop/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <!-- Product view slider -->
+    <link rel="stylesheet" type="text/css" href="~/dailyShop/css/jquery.simpleLens.css">
+
+    <link rel="stylesheet" type="text/css" href="~/dailyShop/css/slick.css">
+
+    <link rel="stylesheet" type="text/css" href="~/dailyShop/css/nouislider.css">
+    <!-- Theme color -->
+    <link id="switcher" href="~/dailyShop/css/theme-color/default-theme.css" rel="stylesheet">
+    <link id="switcher" href="~/dailyShop/css/theme-color/bridge-theme.css" rel="stylesheet">
+    <!-- Top Slider CSS -->
+    <link href="~/dailyShop/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+
+    <!-- Main style sheet -->
+    <link href="~/dailyShop/css/style.css" rel="stylesheet">
+    <link href="~/star/jquery.rateyo.min.css" rel="stylesheet" />
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/star/jquery.min.js"></script>
+    <script src="~/star/jquery.rateyo.min.js"></script>
+
+</head>
+<body>
+    <!-- wpf loader Two -->
+    @*<div id="wpf-loader-two">
+            <div class="wpf-loader-two-inner">
+                <span>Loading</span>
+            </div>
+        </div>*@
+    <!-- / wpf loader Two -->
+    <!-- SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
+    <!-- END SCROLL TOP BUTTON -->
+    <!-- Start header section -->
+    <header id="aa-header">
+        <!-- start header top  -->
+        <div class="aa-header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-header-top-area">
+                            <!-- start header top left -->
+                            <div class="aa-header-top-left">
+                                <!-- start language -->
+                                <div class="aa-language">
+                                    <div class="dropdown">
+                                        <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <img src="~/dailyShop/img/flag/english.jpg" alt="english flag">ENGLISH
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="#"><img src="~/dailyShop/img/flag/french.jpg" alt="">FRENCH</a></li>
+                                            <li><a href="#"><img src="~/dailyShop/img/flag/english.jpg" alt="">ENGLISH</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- / language -->
+                                <!-- start currency -->
+                                <div class="aa-currency">
+                                    <div class="dropdown">
+                                        <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="fa fa-usd"></i>USD
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
+                                            <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- / currency -->
+                                <!-- start cellphone -->
+                                <div class="cellphone hidden-xs">
+                                    <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                                </div>
+                                <!-- / cellphone -->
+                            </div>
+                            <!-- / header top left -->
+                            <div class="aa-header-top-right">
+                                <ul class="aa-head-top-nav-right">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a asp-controller="User" asp-action="Profile">@Context.Session.GetString("FullName")</a></li>
+                                        <li class="hidden-xs"><a asp-controller="User" asp-action="FavoriteProducts"><img src="~/favorite.png" width="50" height="50" />@await Component.InvokeAsync("FavoriteCount")  </a></li>
+                                        <li><a asp-controller="User" asp-action="UserCartList"><img src="~/img/indir.jpg" width="50" height="50" />@await Component.InvokeAsync("CartCount") </a> </li>
+                                        <li class="hidden-xs"><a asp-controller="User" asp-action="OrderList">Siparişlerim</a></li>
+                                        <li><a asp-controller="User" asp-action="LogOut">Çıkış Yap</a></li>
+                                    }
+
+                                    else
+                                    {
+                                        <li><a href="" data-toggle="modal" data-target="#login-modal">Giriş Yap</a></li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / header top  -->
+        <!-- start header bottom  -->
+        <div class="aa-header-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-header-bottom-area">
+                            <!-- logo  -->
+                            <div class="aa-logo">
+                                <!-- Text based logo -->
+                                <a asp-controller="Home" asp-action="Index">
+                                    <span class="fa fa-shopping-cart"></span>
+                                    <p>E<strong>Mağaza</strong> <span>Elektronik E-Ticaret Sitesi</span></p>
+                                </a>
+                                <!-- img based logo -->
+                                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                            </div>
+                            <!-- / logo  -->
+                            <!-- cart box -->
+                            @*<div class="aa-cartbox">
+                                <a class="aa-cart-link" href="#">
+                                    <span class="fa fa-shopping-basket"></span>
+                                    <span class="aa-cart-title">SHOPPING CART</span>
+                                    <span class="aa-cart-notify">2</span>
+                                </a>
+                                <div class="aa-cartbox-summary">
+                                    <ul>
+                                        <li>
+                                            <a class="aa-cartbox-img" href="#"><img src="~/dailyShop/img/woman-small-2.jpg" alt="img"></a>
+                                            <div class="aa-cartbox-info">
+                                                <h4><a href="#">Product Name</a></h4>
+                                                <p>1 x $250</p>
+                                            </div>
+                                            <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+                                        </li>
+                                        <li>
+                                            <a class="aa-cartbox-img" href="#"><img src="~/dailyShop/img/woman-small-1.jpg" alt="img"></a>
+                                            <div class="aa-cartbox-info">
+                                                <h4><a href="#">Product Name</a></h4>
+                                                <p>1 x $250</p>
+                                            </div>
+                                            <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+                                        </li>
+                                        <li>
+                                            <span class="aa-cartbox-total-title">
+                                                Total
+                                            </span>
+                                            <span class="aa-cartbox-total-price">
+                                                $500
+                                            </span>
+                                        </li>
+                                    </ul>
+                                    <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                                </div>
+                            </div>*@
+                            <!-- / cart box -->
+                            <!-- search box -->
+                            <div class="aa-search-box">
+                                <form asp-controller="Product" asp-action="Search" method="get">
+                                    <input type="text" name="search" id="" placeholder="Ürün adı açıklama veya Kategori adı giriniz. ">
+                                    <button type="submit"><span class="fa fa-search"></span></button>
+                                </form>
+                            </div>
+                            <!-- / search box -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / header bottom  -->
+    </header>
+    <!-- / header section -->
+    <!-- menu -->
+    @await Component.InvokeAsync("Category")
+
+    @RenderBody()
+    <!-- / menu -->
+    <!-- footer -->
+    <footer id="aa-footer">
+        <!-- footer bottom -->
+        <div class="aa-footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-footer-top-area">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="aa-footer-widget">
+                                        <h3>Menüler</h3>
+                                        <ul class="aa-footer-nav">
+                                            <li><a href="#">Ana Sayfa</a></li>
+                                            <li><a href="/Category/Details/1">Bilgisayar</a></li>
+                                            <li><a href="/Category/Details/2">Tablet</a></li>
+                                            <li><a href="/Category/Details/3">Telefon</a></li>
+                                            <li><a href="/Category/Details/4">Televizyon</a></li>
+                                            <li><a href="/Category/Details/6">Kamera</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="aa-footer-widget">
+                                        <div class="aa-footer-widget">
+                                            <h3>Knowledge Base</h3>
+                                            <ul class="aa-footer-nav">
+                                                <li><a href="#">Delivery</a></li>
+                                                <li><a href="#">Returns</a></li>
+                                                <li><a href="#">Services</a></li>
+                                                <li><a href="#">Discount</a></li>
+                                                <li><a href="#">Special Offer</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="aa-footer-widget">
+                                        <div class="aa-footer-widget">
+                                            <h3>Useful Links</h3>
+                                            <ul class="aa-footer-nav">
+                                                <li><a href="#">Site Map</a></li>
+                                                <li><a href="#">Search</a></li>
+                                                <li><a href="#">Advanced Search</a></li>
+                                                <li><a href="#">Suppliers</a></li>
+                                            </ul>
+                                        </div>
+                                        <li><a href="#">FAQ</a></li>
+                                    </div>
+                                </div>
+                              @await Component.InvokeAsync("GeneralSetting") 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom -->
+        <div class="aa-footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="aa-footer-bottom-area">
+                            <p>Designed by <a href="http://www.markups.io/">Gökay KALKAN</a></p>
+                            <div class="aa-footer-payment">
+                                <span class="fa fa-cc-mastercard"></span>
+                                <span class="fa fa-cc-visa"></span>
+                                <span class="fa fa-paypal"></span>
+                                <span class="fa fa-cc-discover"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / footer -->
+    <!-- Login Modal -->
+
+    @{ var loginmodel = new LoginModel();}
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4>Giriş Veya Kayıt</h4>
+                    <form class="aa-login-form" method="post" asp-controller="User" asp-action="Login" asp-antiforgery="true">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <label for="">Kullanıcı Adınız <span>*</span></label>
+                        <input type="text" name="Username" placeholder="Kullanıcı Adınızı Giriniz.">
+                        <span asp-validation-for="@loginmodel.Username" class="text-danger"></span>
+                        <br />
+                        <label for="">Şifreniz<span>*</span></label>
+                        <input type="password" name="Password" placeholder="Şifrenizi Giriniz.">
+                        <span asp-validation-for="@loginmodel.Password" class="text-danger"></span>
+                        <br />
+                        <button class="aa-browse-btn" type="submit">Login</button>
+                        <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Beni Hatırla </label>
+                        <p class="aa-lost-password"><a asp-controller="Account" asp-action="ResetPassword">Şifre mi Unuttum ?</a></p>
+                        <div class="aa-register-now">
+                            Bir Hesabınız Yok mu ?<a asp-controller="Account" asp-action="Register">Kayıt Olun!</a>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    @*@Html.RenderPartialAsync("~/Views/User/Login.cshtml")*@
+
+
+    <!-- jQuery library -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/dailyShop/js/bootstrap.js"></script>
+    <!-- SmartMenus jQuery plugin -->
+    @*<script type="text/javascript" src="~/dailyShop/js/jquery.smartmenus.js"></script>
+
+        <script type="text/javascript" src="~/dailyShop/js/jquery.smartmenus.bootstrap.js"></script>*@
+    <!-- To Slider JS -->
+    <script src="~/dailyShop/js/sequence.js"></script>
+    <script src="~/dailyShop/js/sequence-theme.modern-slide-in.js"></script>
+
+    <script type="text/javascript" src="~/dailyShop/js/jquery.simpleGallery.js"></script>
+    <script type="text/javascript" src="~/dailyShop/js/jquery.simpleLens.js"></script>
+
+    <script type="text/javascript" src="~/dailyShop/js/slick.js"></script>
+
+    <script type="text/javascript" src="~/dailyShop/js/nouislider.js"></script>
+
+    <script src="~/dailyShop/js/custom.js"></script>
+
+</body>
+</html>

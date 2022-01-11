@@ -1,0 +1,35 @@
+﻿@model List<Order>
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered table table-striped" >
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Resim</th>
+                        <th>Fiyat</th>
+                        <th>Adet</th>
+                        <th>Sipariş Durumu</th>
+                    </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Products.Name</td>
+                                <td><img src="~/img/@item.ProductImage" width="70" height="70"/></td>
+                                <td>@item.ProductPrice</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.OrderState</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

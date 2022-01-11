@@ -1,0 +1,58 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "DeleteList";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered table table-striped" id="table">
+    <tr>
+        <th>Kategori Adı</th>
+        <th>Geri Yükle</th>
+        <th>Tamamen Sil</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td><a class="btn btn-success" id="delete" data-id="@item.CategoryId" asp-route-id="@item.CategoryId" asp-area="Admin" asp-action="RestoreDeleted"><i class="fa fa-trash"></i></a></td>
+                <td><a class="btn btn-danger" id="deletefull" data-id="@item.CategoryId"  ><i class="fa fa-trash"></i></a></td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+    $("#table").on("click", "#deletefull", function () {
+        var id = $(this).data("id");
+        swal({
+            title: 'Kategori Silinecek!',
+            text: "Silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+
+            if (willDelete) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/Category/FullDelete/' + id,
+                    success: function () {
+                        toastr.error('Kategori Silme İşlemi Başarıyla Gerçekleşti')
+
+
+                    }
+                });
+
+                $(this).parent('td').parent('tr').remove();
+
+            }
+
+        });
+
+    });
+</script>

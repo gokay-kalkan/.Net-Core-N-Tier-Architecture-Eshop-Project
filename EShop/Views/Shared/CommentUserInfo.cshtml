@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "CommentUserInfo";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @if (ViewBag.info != null)
+            {
+            <div class="alert alert-success">@ViewBag.info</div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @if (ViewBag.shop != null)
+            {
+            <div class="alert alert-success">@ViewBag.shop</div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

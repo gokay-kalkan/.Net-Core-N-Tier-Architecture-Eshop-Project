@@ -1,0 +1,336 @@
+﻿@model List<EntityLayer.Entity.Product>
+<section id="aa-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="aa-product-area">
+                        <div class="aa-product-inner">
+                            <!-- start prduct navigation -->
+                            <ul class="nav nav-tabs aa-products-tab">
+                                <li class="active"><a href="#men" data-toggle="tab">Tümü</a></li>
+                                <li><a href="#women" data-toggle="tab">Bilgisayar</a></li>
+                                <li><a href="#sports" data-toggle="tab">Tablet</a></li>
+                                <li><a href="#electronics" data-toggle="tab">Telefon</a></li>
+                                <li><a href="#tv" data-toggle="tab">Televizyon</a></li>
+                                <li><a href="#camera" data-toggle="tab">Kamera</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+
+                            <div class="tab-content">
+                                <!-- Start men product category -->
+                                <div class="tab-pane fade in active" id="men">
+                                    <ul class="aa-product-catg">
+                                        @foreach (var item in Model)
+                                        {
+                                            <!-- start single product item -->
+                                            <li>
+                                                <figure>
+                                                    @foreach (var itemimg in ViewBag.image)
+                                                    {
+                                                        if (item.ProductId == itemimg.ProductId)
+                                                        {
+                                                            <a class="aa-product-img" href="#"><img src="~/img/@itemimg.ImageName" alt="polo shirt img" style="width:250px; height:300px;"></a>
+                                                        }
+
+
+                                                    }
+                                                    <a class="aa-add-card-btn" href="#">@*<span class="fa fa-shopping-cart"></span>*@Detaya Git</a>
+                                                    <figcaption>
+                                                        <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                        <span class="aa-product-price">@item.Price</span>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-product-hvr-content">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                </div>
+                                                <!-- product badge -->
+
+                                            </li>
+                                        }
+                                        <!-- start single product item -->
+
+                                    </ul>
+                                    @*<a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>*@
+                                </div>
+
+                                <div class="tab-pane fade" id="women">
+                                    <ul class="aa-product-catg">
+                                        <!-- start single product item -->
+                                        @foreach (var item in ViewBag.computer)
+                                        {
+
+
+                                            <li>
+                                                <figure>
+                                                    @foreach (var image in ViewBag.computerimage)
+                                                    {
+
+                                                        @if (item.ProductId == image.ProductId)
+                                                        {
+                                                            <a href="#"><img src="~/img/@image.ImageName" style="width:100%; height:300px!important;"></a>
+                                                        }
+
+
+
+                                                    }
+                                                    <a class="aa-add-card-btn" href="#">Detaya Git</a>
+                                                    <figcaption>
+                                                        <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                        <span class="aa-product-price">$ @item.Price</span>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-product-hvr-content">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                </div>
+
+                                            </li>
+                                        }
+
+                                    </ul>
+
+                                </div>
+                                <!-- / women product category -->
+                                <!-- start sports product category -->
+                                <div class="tab-pane fade" id="sports">
+                                    <ul class="aa-product-catg">
+                                        <!-- start single product item -->
+                                        @foreach (var item in ViewBag.tablet)
+                                        {
+
+
+                                            <li>
+                                                <figure>
+                                                    @foreach (var itemimg in ViewBag.tabletimage)
+                                                    {
+                                                        @if (item.ProductId == itemimg.ProductId)
+                                                        {
+                                                            <a href="#"><img src="~/img/@itemimg.ImageName" style="width:100%; height: 300px !important;"></a>
+                                                        }
+
+
+                                                    }
+                                                    <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Sepete Ekle</a>
+                                                    <figcaption>
+                                                        <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                        <span class="aa-product-price">$ @item.Price</span>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-product-hvr-content">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                </div>
+
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                                <!-- / sports product category -->
+                                <!-- start electronic product category -->
+                                <div class="tab-pane fade" id="electronics">
+                                    <ul class="aa-product-catg">
+                                        <!-- start single product item -->
+                                        @foreach (var item in ViewBag.phone)
+                                        {
+
+
+                                            <li>
+                                                <figure>
+                                                    @foreach (var itemimg in ViewBag.phoneimage)
+                                                    {
+                                                        @if (item.ProductId == itemimg.ProductId)
+                                                        {
+                                                            <a href="#"><img src="~/img/@itemimg.ImageName" style="width:100%; height: 300px !important;"></a>
+                                                        }
+
+                                                    }
+
+                                                    <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Sepete Ekle</a>
+                                                    <figcaption>
+                                                        <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                        <span class="aa-product-price">$ @item.Price</span>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-product-hvr-content">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                </div>
+
+                                            </li>
+                                        }
+                                    </ul>
+
+                                </div>
+
+
+                                <div class="tab-pane fade" id="tv">
+                                    <ul class="aa-product-catg">
+                                        <!-- start single product item -->
+                                        @foreach (var item in ViewBag.tv)
+                                        {
+
+
+                                            <li>
+                                                <figure>
+                                                    @foreach (var itemimg in ViewBag.tvimage)
+                                                    {
+                                                        @if (item.ProductId == itemimg.ProductId)
+                                                        {
+                                                            <a href="#"><img src="~/img/@itemimg.ImageName" style="width:100%; height: 300px !important;"></a>
+                                                        }
+
+                                                    }
+
+                                                    <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Sepete Ekle</a>
+                                                    <figcaption>
+                                                        <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                        <span class="aa-product-price">$ @item.Price</span>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-product-hvr-content">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                </div>
+
+                                            </li>
+                                        }
+                                    </ul>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="camera">
+                                    <ul class="aa-product-catg">
+                                        <!-- start single product item -->
+                                        @foreach (var item in ViewBag.camera)
+                                        {
+
+
+                                            <li>
+                                                <figure>
+                                                    @foreach (var itemimg in ViewBag.cameraimage)
+                                                    {
+                                                        @if (item.ProductId == itemimg.ProductId)
+                                                        {
+                                                            <a href="#"><img src="~/img/@itemimg.ImageName" style="width:100%; height:300px!important;"></a>
+                                                        }
+
+                                                    }
+
+                                                    <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Sepete Ekle</a>
+                                                    <figcaption>
+                                                        <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                        <span class="aa-product-price">$ @item.Price</span>
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="aa-product-hvr-content">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                </div>
+
+                                            </li>
+                                        }
+                                    </ul>
+
+                                </div>
+
+
+                                <!-- / electronic product category -->
+                            </div>
+
+                            <!-- quick view modal -->
+                            <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <div class="row">
+                                                <!-- Modal view slider -->
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="aa-product-view-slider">
+                                                        <div class="simpleLens-gallery-container" id="demo-1">
+                                                            <div class="simpleLens-container">
+                                                                <div class="simpleLens-big-image-container">
+                                                                    <a class="simpleLens-lens-image" data-lens-image="~/dailyShop/img/view-slider/large/polo-shirt-1.png">
+                                                                        <img src="img/view-slider/medium/polo-shirt-1.png" class="simpleLens-big-image">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="simpleLens-thumbnails-container">
+                                                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                                                   data-lens-image="~/dailyShop/img/view-slider/large/polo-shirt-1.png"
+                                                                   data-big-image="~/dailyShop/img/view-slider/medium/polo-shirt-1.png">
+                                                                    <img src="~/dailyShop/img/view-slider/thumbnail/polo-shirt-1.png">
+                                                                </a>
+                                                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                                                   data-lens-image="~/dailyShop/img/view-slider/large/polo-shirt-3.png"
+                                                                   data-big-image="~/dailyShop/img/view-slider/medium/polo-shirt-3.png">
+                                                                    <img src="~/dailyShop/img/view-slider/thumbnail/polo-shirt-3.png">
+                                                                </a>
+
+                                                                <a href="#" class="simpleLens-thumbnail-wrapper"
+                                                                   data-lens-image="~/dailyShop/img/view-slider/large/polo-shirt-4.png"
+                                                                   data-big-image="~/dailyShop/img/view-slider/medium/polo-shirt-4.png">
+                                                                    <img src="~/dailyShop/img/view-slider/thumbnail/polo-shirt-4.png">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal view content -->
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="aa-product-view-content">
+                                                        <h3>T-Shirt</h3>
+                                                        <div class="aa-price-block">
+                                                            <span class="aa-product-view-price">$34.99</span>
+                                                            <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
+                                                        </div>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis animi, veritatis quae repudiandae quod nulla porro quidem, itaque quis quaerat!</p>
+                                                        <h4>Size</h4>
+                                                        <div class="aa-prod-view-size">
+                                                            <a href="#">S</a>
+                                                            <a href="#">M</a>
+                                                            <a href="#">L</a>
+                                                            <a href="#">XL</a>
+                                                        </div>
+                                                        <div class="aa-prod-quantity">
+                                                            <form action="">
+                                                                <select name="" id="">
+                                                                    <option value="0" selected="1">1</option>
+                                                                    <option value="1">2</option>
+                                                                    <option value="2">3</option>
+                                                                    <option value="3">4</option>
+                                                                    <option value="4">5</option>
+                                                                    <option value="5">6</option>
+                                                                </select>
+                                                            </form>
+                                                            <p class="aa-prod-category">
+                                                                Category: <a href="#">Polo T-Shirt</a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="aa-prod-view-bottom">
+                                                            <a href="#" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                                                            <a href="#" class="aa-add-to-cart-btn">View Details</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- / quick view modal -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

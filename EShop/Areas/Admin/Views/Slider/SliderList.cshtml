@@ -1,0 +1,33 @@
+﻿@model List<SliderImages>
+@{
+    ViewData["Title"] = "SliderList";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="card-header">
+                    <h2>Resimler</h2>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4">
+                            <img src="~/img/@item.SliderName" width="80" height="80" />
+                            <br /><br />
+                            <a asp-action="Update" asp-area="Admin" asp-route-id="@item.SliderId" class="btn btn-primary" style="margin-bottom:10px;">Güncelle</a>
+                            <a asp-action="Delete" asp-area="Admin" asp-route-id="@item.SliderId" class="btn btn-danger" style="margin-bottom:10px;" onclick="return confirm('silmek istediğinize emin misiniz?')">Sil</a>
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

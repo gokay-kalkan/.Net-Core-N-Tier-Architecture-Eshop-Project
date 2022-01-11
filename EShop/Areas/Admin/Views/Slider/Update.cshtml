@@ -1,0 +1,37 @@
+﻿@model SliderImages
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="form-group">
+                    <form method="post" asp-controller="Slider" asp-action="Update" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+
+
+                        <div>
+                            <input asp-for="@Model.SliderId" hidden />
+
+                            <input type="file" asp-for="SliderImageName" />
+                            <br />
+                            <button type="submit" class="btn btn-warning">Güncelle</button>
+
+
+
+
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

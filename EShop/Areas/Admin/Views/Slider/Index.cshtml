@@ -1,0 +1,26 @@
+﻿@model List<Slider>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered table table-striped">
+    <tr>
+        <th>Slider</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><img src="~/img/@item.SliderImages.Where(x=>x.SliderId==item.SliderId).Select(x=>x.SliderName).FirstOrDefault()" width="70" height="70" /></td>
+                <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SliderId">Sil</a></td>
+                <td><a class="btn btn-warning" asp-area="Admin" asp-action="SliderList" asp-route-id="@item.SliderId">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a class="btn btn-primary" asp-area="Admin" asp-action="Create">Ekle</a>
+

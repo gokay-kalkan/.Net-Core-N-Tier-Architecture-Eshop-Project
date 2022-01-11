@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "LoginCheck";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6" style="margin-top:10px;">
+                <div class="alert alert info">
+                    <span class="alert alert-info"> Öncelikle Sisteme Giriş Yapınız.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (TempData["Error"] != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6" style="margin-top:10px;">
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,281 @@
+﻿@model List<EntityLayer.Entity.Product>
+<section id="aa-popular-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="aa-popular-category-area">
+                        <!-- start prduct navigation -->
+                        <ul class="nav nav-tabs aa-products-tab">
+                            <li class="active"><a href="#popular" data-toggle="tab">Tümü</a></li>
+                            <li><a href="#featured" data-toggle="tab">Bilgisayar</a></li>
+                            <li><a href="#latest" data-toggle="tab">Tablet</a></li>
+                            <li><a href="#phone" data-toggle="tab">Telefon</a></li>
+                            <li><a href="#Tv" data-toggle="tab">Tv</a></li>
+                            <li><a href="#camera" data-toggle="tab">Kamera</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <!-- Start men popular category -->
+                            <div class="tab-pane fade in active" id="popular">
+                                <ul class="aa-product-catg aa-popular-slider">
+
+                                    <!-- start single product item -->
+                                    @foreach (var item in Model)
+                                    {
+
+                                        var c = 1;
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.image)
+                                                {
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {
+                                                            <a class="aa-product-img" href="#"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                <a class="aa-add-card-btn" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><span class="fa fa-shopping-cart"></span>Detaya Git</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                    <span class="aa-product-price">$@item.Price</span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                            <!-- / popular product category -->
+                            <!-- start featured product category -->
+                            <div class="tab-pane fade" id="featured">
+                                <ul class="aa-product-catg aa-featured-slider">
+                                    <!-- start single product item -->
+                                    @foreach (var item in ViewBag.computer)
+                                    {
+
+                                        var c = 1;
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.computerimage)
+                                                {
+
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {
+                                                            <a class="aa-product-img" href="#"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+
+
+                                                }
+                                                <a class="aa-add-card-btn" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><span class="fa fa-shopping-cart"></span>Detaya Git</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
+                                                    <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+
+                                </ul>
+
+                            </div>
+
+                            <!-- / featured product category -->
+                            <!-- start latest product category -->
+                            <div class="tab-pane fade" id="latest">
+                                <ul class="aa-product-catg aa-latest-slider">
+                                    <!-- start single product item -->
+                                    @foreach (var item in ViewBag.tablet)
+                                    {
+                                        var c = 1;
+
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.tabletimage)
+                                                {
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {
+                                                            <a class="aa-product-img" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Detaya Git</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                    <span class="aa-product-price">$ @item.Price</span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="phone">
+                                <ul class="aa-product-catg aa-latest-slider">
+                                    <!-- start single product item -->
+                                    @foreach (var item in ViewBag.phone)
+                                    {
+
+                                        var c = 1;
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.phoneimage)
+                                                {
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {
+                                                            <a class="aa-product-img" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                <a class="aa-add-card-btn" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><span class="fa fa-shopping-cart"></span>Detaya Git</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                    <span class="aa-product-price">$ @item.Price</span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="Tv">
+                                <ul class="aa-product-catg aa-latest-slider">
+                                    <!-- start single product item -->
+                                    @foreach (var item in ViewBag.tv)
+                                    {
+                                        var c = 1;
+
+
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.tvimage)
+                                                {
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {
+                                                            <a class="aa-product-img" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Detaya Git</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                    <span class="aa-product-price">$ @item.Price</span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="camera">
+                                <ul class="aa-product-catg aa-latest-slider">
+                                    <!-- start single product item -->
+                                    @foreach (var item in ViewBag.camera)
+                                    {
+
+                                        var c = 1;
+                                        <li>
+                                            <figure>
+                                                @foreach (var itemimg in ViewBag.cameraimage)
+                                                {
+                                                    @if (item.ProductId == itemimg.ProductId)
+                                                    {
+                                                        if (@c == 1)
+                                                        {
+                                                            <a class="aa-product-img" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><img src="~/img/@itemimg.ImageName" style="width:250px; height:300px;" alt="polo shirt img"></a>
+                                                            c++;
+                                                        }
+
+                                                    }
+                                                }
+
+                                                <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Detaya Git</a>
+                                                <figcaption>
+                                                    <h4 class="aa-product-title"><a href="#">@item.Name</a></h4>
+                                                    <span class="aa-product-price">$ @item.Price</span>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="aa-product-hvr-content">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                                                <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                            </div>
+
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+                            <!-- / latest product category -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

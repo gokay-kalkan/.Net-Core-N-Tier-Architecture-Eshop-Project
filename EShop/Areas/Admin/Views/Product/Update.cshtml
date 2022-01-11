@@ -1,0 +1,68 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <form method="post" asp-antiforgery="true" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="ProductId" />
+                        <label>Ürün Adı</label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <br />
+
+                        <label>Açıklama</label>
+                        <input type="text" asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                        <br />
+
+                        <label>Fiyat</label>
+                        <input type="text" asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                        <br />
+
+                        <label>Stok</label>
+                        <input type="text" asp-for="Stock" class="form-control" />
+                        <span asp-validation-for="Stock" class="text-danger"></span>
+                        <br />
+
+                        <label>Onay</label>
+                        <input type="checkbox" asp-for="Approved" />
+                        <span asp-validation-for="Approved" class="text-danger"></span>
+                        <br />
+
+                        <label>Popüler</label>
+                        <input type="checkbox" asp-for="Popular" />
+                        <span asp-validation-for="Popular" class="text-danger"></span>
+                        <br />
+
+                        <label>Resim</label>
+                        <input type="file" asp-for="Image" multiple />
+                        <br />
+
+                        <label>Kategori</label>
+
+                        <select asp-for="CategoryId" class="form-control">
+                            <option selected class="form-control">Seçiniz</option>
+                            @foreach (var item in ViewBag.category)
+                            {
+
+                                <option value="@item.Value" class="form-control">@item.Text</option>
+                            }
+
+
+                        </select>
+                        <br />
+                        <button type="submit" class="btn btn-warning">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

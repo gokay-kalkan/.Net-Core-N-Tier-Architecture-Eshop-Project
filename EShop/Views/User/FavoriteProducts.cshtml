@@ -1,0 +1,112 @@
+﻿@model List<Favorite>
+@{
+    ViewData["Title"] = "FavoriteProducts";
+}
+
+
+@if (Model.Count == 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" style="margin-top:10px;">
+                <div class="alert alert-success">Favorilere eklemiş olduğunuz bir ürün bulunamadı.</div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <section id="cart-view">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-view-area">
+                        <div class="cart-view-table aa-wishlist-table">
+                            <form action="">
+                                <div class="table-responsive">
+                                    <table class="table" id="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Ürün</th>
+                                                <th>Fiyat</th>
+                                                <th>Resim</th>
+                                                <th>Sil</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>@item.Product.Name</td>
+                                                <td>$ @item.Product.Price</td>
+                                                <td><img src="~/img/@item.Product.Images.Where(x=>x.ProductId==item.Product.ProductId).Select(x=>x.ImageName).FirstOrDefault()" width="70" height="70" /></td>
+                                                <td><a class="btn btn-danger" id="delete" data-id="@item.FavoriteId"><i class="fa fa-trash"></i></a></td>
+
+                                            </tr>
+                                            }
+
+                                            @*<tr>
+                                                    <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
+                                                    <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
+                                                    <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
+                                                    <td>$150</td>
+                                                    <td>In Stock</td>
+                                                    <td><a href="#" class="aa-add-to-cart-btn">Add To Cart</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
+                                                    <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
+                                                    <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
+                                                    <td>$50</td>
+                                                    <td>In Stock</td>
+                                                    <td><a href="#" class="aa-add-to-cart-btn">Add To Cart</a></td>
+                                                </tr>*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+<script type="text/javascript">
+
+    $("#table").on("click", "#delete", function () {
+        var id = $(this).data("id");
+        swal({
+            title: 'Favorilerden Silinecek!',
+            text: "Silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+
+            if (willDelete) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/Product/FavoriteDelete/' + id,
+                    success: function () {
+                        toastr.error('Favorilerden Silme İşlemi Başarıyla Gerçekleşti')
+
+
+                    }
+                });
+
+                $(this).parent('td').parent('tr').remove();
+
+            }
+
+        });
+
+    });
+</script>

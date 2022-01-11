@@ -1,0 +1,75 @@
+﻿@model Cart
+@using Microsoft.AspNetCore.Http
+
+@{ var order = new Order();}
+@{
+    ViewData["Title"] = "ToOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+
+
+    <table class="table table-bordered table table-striped">
+        <tr>
+            <th>Ürün</th>
+            <th>Resim</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+
+        </tr>
+        <tbody>
+            <tr>
+                <td>@Model.Product.Name</td>
+                <td><img src="~/img/@Model.ProductImage" width="70" height="70" /></td>
+                <td>@Model.Price</td>
+                <td>@Model.Quantity</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <form method="post" asp-action="ToOrderPost" asp-antiforgery="true" asp-route-id="@Model.CartId">
+
+                    <input class="btn btn-success" value="@Context.Session.GetString("FullName")" />
+                    <input type="hidden" name="UserAdminId" value="@Context.Session.GetString("Id")" />
+
+                    <input type="hidden" name="ProductId" value="@ViewBag.productid" />
+                    <br /><br />
+                    <label>Adres</label>
+                    <textarea class="form-control" cols="4" rows="4" name="Address"></textarea>
+                    <br />
+                    <label>Şehir</label>
+                    <input type="text" class="form-control" name="City" />
+                    <br />
+                    <label>Semt</label>
+                    <input type="text" class="form-control" name="District" />
+                    <br />
+
+                    <label>Kart Adı</label>
+                    <input name="CardName" class="form-control" />
+                    <br />
+                    <label>Kart Numarası</label>
+                    <input name="CardNumber" class="form-control" />
+                    <br />
+
+                    <label>Ay</label>
+                    <input name="ExpirationMonth" class="form-control" />
+                    <br />
+
+                    <label>Yıl</label>
+                    <input name="ExpirationYear" class="form-control" />
+                    <br />
+
+                    <label>Güvenlik Kodu</label>
+                    <input name="Cvc" class="form-control" />
+                    <br />
+                    <button type="submit" class="btn btn-success">Siparişi Tamamla</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

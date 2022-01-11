@@ -1,0 +1,96 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">*@
+<table class="table table-bordered table table-striped">
+    <tr>
+        <td>Ürün Adı</td>
+        <td>Açıklama</td>
+        <td>Fiyat</td>
+        <td>Stok</td>
+        <td>Onay</td>
+        <td>Popüler</td>
+        <td>Kategori</td>
+        <td>Resimler</td>
+        <td>Resim Ekle</td>
+        <td>Sil</td>
+        <td>Güncelle</td>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td>
+                    @if (item.Approved == true)
+                    {
+                        <i class="fas fa-check-circle" style="color:green; width:30px; height:25px;"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-times-circle" style="color:red; width:30px; height:25px;"></i>
+                    }
+
+                </td>
+                <td>
+                    @if (item.Popular == true)
+                    {
+                        <i class="fas fa-check-circle" style="color:green; width:30px; height:25px;"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-times-circle" style="color:red; width:30px; height:25px;"></i>
+                    }
+
+                </td>
+                <td>@item.Category.Name</td>
+                <td><a class="btn btn-primary" asp-controller="Product" asp-action="ImageList" asp-route-id="@item.ProductId">Resimler</a></td>
+                <td><a class="btn btn-primary" asp-controller="Product" asp-action="ImageCreate" asp-route-id="@item.ProductId">Resim Ekle</a></td>
+                <td><a class="btn btn-danger" id="delete" data-id="@item.ProductId"><i class="fa fa-trash"></i></a></td>
+
+                <td><a asp-action="Update" asp-route-id="@item.ProductId" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+<a asp-action="Create" class="btn btn-primary">Ekle</a>
+
+<script type="text/javascript">
+
+    $("#table").on("click", "#delete", function () {
+        var id = $(this).data("id");
+        swal({
+            title: 'Ürün Silinecek!',
+            text: "Silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+
+            if (willDelete) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/Product/Delete/' + id,
+                    success: function () {
+                        if (data.success) {
+                            toastr.error('Kategori Silme İşlemi Başarıyla Gerçekleşti')
+
+                        }
+                    }
+                });
+                $(this).parent('td').parent('tr').remove();
+            }
+
+        });
+
+    });
+</script>
+

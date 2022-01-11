@@ -1,0 +1,29 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "ImageCreate";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="col-md-4">
+                <div class="form-group">
+
+
+
+                    <form method="post" asp-action="ImageCreate" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="ProductId" />
+
+                        <input type="file" asp-for="Image" multiple />
+                        <br /> <br />
+                        <button type="submit" class="btn btn-warning">Resimleri Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

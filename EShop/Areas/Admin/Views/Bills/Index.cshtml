@@ -1,0 +1,92 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.cs" />
+
+
+<table id="example" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>Sipariş No</th>
+            <th>Tarih</th>
+            <th>Ürün</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Kullanıcı</th>
+            <th>Adres</th>
+            <th>Şehir</th>
+            <th>Semt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderNo</td>
+                <td>@item.Date</td>
+                <td>@item.Products.Name</td>
+                <td>@item.ProductPrice</td>
+                <td>@item.Quantity</td>
+                <th>@item.UserAdmin.FullName</th>
+                <th>@item.Address</th>
+                <th>@item.City</th>
+                <th>@item.District</th>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Sipariş No</th>
+            <th>Tarih</th>
+            <th>Ürün</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Kullanıcı</th>
+            <th>Adres</th>
+            <th>Şehir</th>
+            <th>Semt</th>
+        </tr>
+    </tfoot>
+</table>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-danger">@ViewBag.Total</h4>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+</script>
+
+
+
+

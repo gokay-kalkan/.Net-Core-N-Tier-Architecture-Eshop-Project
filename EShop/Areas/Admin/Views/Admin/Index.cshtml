@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="jumbotron">
+                Merhaba @Context.Session.GetString("FullName") Admin paneline hoş geldiniz.
+            </div>
+        </div>
+    </div>
+</div>
+

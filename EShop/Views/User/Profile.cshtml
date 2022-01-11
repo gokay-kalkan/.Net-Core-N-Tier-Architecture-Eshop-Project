@@ -1,0 +1,53 @@
+﻿@model RegisterModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@if (ViewBag.success != null)
+{
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6" style="margin-top:10px;">
+                <div class="alert alert-success">@ViewBag.success</div>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <form method="post" asp-controller="User" asp-action="Profile">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label>Ad Soyad</label>
+                            <input asp-for="FullName" class="form-control" />
+                            <span asp-validation-for="FullName" class="text text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Adı</label>
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <button type="submit" class="btn btn-warning">Güncelle</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

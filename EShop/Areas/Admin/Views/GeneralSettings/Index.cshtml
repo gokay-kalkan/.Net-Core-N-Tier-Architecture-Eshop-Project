@@ -1,0 +1,39 @@
+﻿@model List<GeneralSetting>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<table class="table table-bordered table table-striped">
+    <tr>
+        <th>Logo</th>
+
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>Adres</th>
+        <th>Güncelle</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.LogoName == null)
+                {
+                    <td>Logo Eklenmedi</td>
+                }
+                else
+                {
+                    <td><img src="~/img/@item.LogoName" width="70" height="70" /></td>
+                }
+
+
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Address</td>
+                <td><a asp-action="Update" asp-route-id="@item.GeneralSettingsId" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a class="btn btn-primary" asp-area="Admin" asp-controller="GeneralSettings" asp-action="Create">Ekle</a>
